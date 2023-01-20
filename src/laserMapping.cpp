@@ -957,7 +957,7 @@ void h_share_model(state_ikfom &s, esekfom::dyn_share_datastruct<double> &ekfom_
 
     /** closest surface search and residual computation **/
     #ifdef MP_EN
-        omp_set_num_threads(MP_PROC_NUM);
+        omp_set_num_threads(atoi(MP_PROC_NUM));
         #pragma omp parallel for
     #endif
     for (int i = 0; i < feats_down_size; i++)
@@ -1475,7 +1475,7 @@ int main(int argc, char** argv)
         
         /*** iterated state estimation ***/
         #ifdef MP_EN
-        printf("[ LIO ]: Using multi-processor, used core number: %d.\n", MP_PROC_NUM);
+        printf("[ LIO ]: Using multi-processor, used core number: %s.\n", MP_PROC_NUM);
         #endif
         double t_update_start = omp_get_wtime();
         #ifdef USE_IKFOM
@@ -1495,7 +1495,7 @@ int main(int argc, char** argv)
 
         if(img_en)
         {
-            omp_set_num_threads(MP_PROC_NUM);
+            omp_set_num_threads(atoi(MP_PROC_NUM));
             #pragma omp parallel for
             for(int i=0;i<1;i++) {}
         }
@@ -1513,7 +1513,7 @@ int main(int argc, char** argv)
 
                 /** closest surface search and residual computation **/
                 #ifdef MP_EN
-                    omp_set_num_threads(MP_PROC_NUM);
+                    omp_set_num_threads(atoi(MP_PROC_NUM));
                     #pragma omp parallel for
                 #endif
                 // normvec->resize(feats_down_size);
