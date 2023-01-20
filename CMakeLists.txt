@@ -85,10 +85,7 @@ add_message_files(
   States.msg
 )
 
-generate_messages(
- DEPENDENCIES
- geometry_msgs
-)
+generate_messages(DEPENDENCIES std_msgs)
 
 catkin_package(
   CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy std_msgs message_runtime cv_bridge image_transport vikit_common vikit_ros
@@ -107,12 +104,16 @@ add_library(vio src/lidar_selection.cpp
                 src/point.cpp
                 src/map.cpp
                 )
+add_dependencies(vio ${catkin_EXPORTED_TARGETS})
+
+
 add_executable(fastlivo_mapping src/laserMapping.cpp 
                                 src/IMU_Processing.cpp
                                 src/preprocess.cpp
                                 )
 target_link_libraries(fastlivo_mapping ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} vio ikdtree)
 target_include_directories(fastlivo_mapping PRIVATE ${PYTHON_INCLUDE_DIRS})
+add_dependencies(fastlivo_mapping ${catkin_EXPORTED_TARGETS})
 
 # add_executable(kd_tree_test include/ikd-Tree/ikd_Tree.cpp src/kd_tree_test.cpp)
 # target_link_libraries(kd_tree_test ${PCL_LIBRARIES})
