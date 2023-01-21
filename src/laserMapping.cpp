@@ -1495,7 +1495,7 @@ int main(int argc, char** argv)
 
         if(img_en)
         {
-            omp_set_num_threads(atoi(MP_PROC_NUM));
+            omp_set_num_threads(MP_PROC_NUM);
             #pragma omp parallel for
             for(int i=0;i<1;i++) {}
         }
