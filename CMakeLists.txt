@@ -36,6 +36,11 @@ else()
   add_definitions(-DMP_PROC_NUM=1)
 endif()
 
+# Use 2 for all machines. Build machine and target/run machine might differ in amount of processors.
+add_definitions(-DMP_EN)
+add_definitions(-DMP_PROC_NUM=2)
+
+
 find_package(OpenMP QUIET)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   ${OpenMP_C_FLAGS}")

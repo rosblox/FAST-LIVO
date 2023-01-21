@@ -957,7 +957,7 @@ void h_share_model(state_ikfom &s, esekfom::dyn_share_datastruct<double> &ekfom_
 
     /** closest surface search and residual computation **/
     #ifdef MP_EN
-        omp_set_num_threads(atoi(MP_PROC_NUM));
+        omp_set_num_threads(MP_PROC_NUM);
         #pragma omp parallel for
     #endif
     for (int i = 0; i < feats_down_size; i++)
@@ -1513,7 +1513,7 @@ int main(int argc, char** argv)
 
                 /** closest surface search and residual computation **/
                 #ifdef MP_EN
-                    omp_set_num_threads(atoi(MP_PROC_NUM));
+                    omp_set_num_threads(MP_PROC_NUM);
                     #pragma omp parallel for
                 #endif
                 // normvec->resize(feats_down_size);
