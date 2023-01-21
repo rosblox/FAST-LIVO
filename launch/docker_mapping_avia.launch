@@ -3,6 +3,6 @@
 
     <node pkg="rosbag" type="play" name="player" output="screen" args="/hku2.bag" launch-prefix="bash -c 'sleep 5; $0 $@' "/>
 
-    <include file="$(find fast-livo)/launch/mapping_avia.launch"/>
+    <include file="$(find fast_livo)/launch/mapping_avia.launch"/>
 
 </launch>
